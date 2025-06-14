@@ -1,58 +1,49 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-import sqlite3
+import json
 import os
 
 app = Flask(__name__)
 CORS(app)
 
-def init_db():
-    # Delete existing database to start fresh
-    if os.path.exists('tasks.db'):
-        os.remove('tasks.db')
-        print("Deleted old database")
-    
-    conn = sqlite3.connect('tasks.db')
-    cursor = conn.cursor()
-    cursor.execute('''
-        CREATE TABLE tasks (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            description TEXT NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    ''')
-    conn.commit()
-    conn.close()
-    print("Database and table created successfully")
+# Since Vercel doesn't support SQLite persistence, we'll use a simple in-memory solution
+# or you'd need to use a cloud database like PostgreSQL, MongoDB, etc.
+tasks_storage = []
 
 @app.route('/')
 def home():
     return 'Life Triage Backend'
 
+@app.route('/api')
+def api_home():
+    return 'Life Triage API'
+
 @app.route('/api/tasks', methods=['GET', 'POST'])
 def tasks():
-    conn = sqlite3.connect('tasks.db')
-    cursor = conn.cursor()
-
+    global tasks_storage
+    
     if request.method == 'POST':
         task = request.json.get('task')
         print(f"Received task: {task}")
         try:
-            cursor.execute('INSERT INTO tasks (description) VALUES (?)', (task,))
-            conn.commit()
+            # Add task to in-memory storage
+            task_data = {
+                'id': len(tasks_storage) + 1,
+                'description': task,
+                'created_at': 'now'  # You could use datetime here
+            }
+            tasks_storage.append(task_data)
             print("Task saved successfully")
             return jsonify({'status': 'Task saved'})
         except Exception as e:
             print(f"Error saving task: {e}")
             return jsonify({'error': str(e)}), 500
-        finally:
-            conn.close()
 
-    cursor.execute('SELECT * FROM tasks')
-    tasks = cursor.fetchall()
-    conn.close()
-    return jsonify({'tasks': tasks})
+    return jsonify({'tasks': tasks_storage})
 
+# This is required for Vercel
 if __name__ == '__main__':
-    init_db()
-    app.run(debug=True)
+    app.run()
+
+# Export the app for Vercel
+app = app
