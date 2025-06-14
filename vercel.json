@@ -1,8 +1,10 @@
 {
     "version": 2,
     "builds": [
-      { "src": "api/app.py", "use": "@vercel/python" },
-      { "src": "frontend/package.json", "use": "@vercel/static-build" }
+      {
+        "src": "api/app.py",
+        "use": "@vercel/python"
+      }
     ],
     "routes": [
       {
@@ -11,8 +13,8 @@
       },
       {
         "src": "/(.*)",
-        "dest": "frontend/dist/$1"
+        "dest": "/index.html"
       }
     ]
   }
-  
+
