@@ -29,7 +29,7 @@ def init_db():
 def home():
     return 'Life Triage Backend'
 
-@app.route('/tasks', methods=['GET', 'POST'])
+@app.route('/api/tasks', methods=['GET', 'POST'])
 def tasks():
     conn = sqlite3.connect('tasks.db')
     cursor = conn.cursor()
