@@ -26,7 +26,7 @@ function App() {
     console.log('Sending text:', text); // Debug: see what we're sending
     
     try {
-      const response = await fetch('http://localhost:5000/tasks', {
+      const response = await fetch('/api/tasks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
