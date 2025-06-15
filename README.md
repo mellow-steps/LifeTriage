@@ -40,9 +40,17 @@ LifeTriage/
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
+│   │   │   ├── VoiceInput.jsx
+│   │   │   ├── TaskList.jsx
+│   │   │   ├── TaskCard.jsx
+│   │   │   └── CategoryFilter.jsx
 │   │   ├── hooks/
+│   │   │   ├── useSpeechRecognition.js
+│   │   │   └── useTaskManager.js
 │   │   ├── services/
+│   │   │   └── api.js
 │   │   ├── utils/
+│   │   │   └── constants.js
 │   │   ├── App.jsx
 │   │   └── main.jsx
 │   ├── package.json
@@ -50,16 +58,28 @@ LifeTriage/
 │   └── index.html
 ├── backend/
 │   ├── app/
+│   │   ├── __init__.py
 │   │   ├── models/
+│   │   │   ├── __init__.py
+│   │   │   └── task.py
 │   │   ├── routes/
+│   │   │   ├── __init__.py
+│   │   │   ├── tasks.py
+│   │   │   └── health.py
 │   │   ├── services/
+│   │   │   ├── __init__.py
+│   │   │   └── task_service.py
 │   │   ├── utils/
+│   │   │   ├── __init__.py
+│   │   │   └── database.py
 │   │   └── config.py
 │   ├── requirements.txt
 │   ├── app.py
 │   ├── Procfile
 │   └── .env
 ├── docs/
+│   ├── api.md
+│   └── deployment.md
 ├── .gitignore
 └── README.md
 ```
