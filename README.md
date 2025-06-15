@@ -95,13 +95,13 @@ LifeTriage/
 **Timeline**: 4-6 hours
 
 **Tasks:**
-- [ ] Create GitHub repository with proper .gitignore
-- [ ] Set up project folder structure
-- [ ] Initialize frontend with React + Vite
-- [ ] Initialize backend with Flask
-- [ ] Create development environment documentation
-- [ ] Set up local development environment variables
-- [ ] Create initial README with setup instructions
+- [x] Create GitHub repository with proper .gitignore
+- [x] Set up project folder structure
+- [x] Initialize frontend with React + Vite
+- [x] Initialize backend with Flask
+- [x] Create development environment documentation
+- [x] Set up local development environment variables
+- [x] Create initial README with setup instructions
 
 **Success Criteria:**
 - Both frontend and backend can be started locally
