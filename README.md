@@ -111,10 +111,10 @@ LifeTriage/
 **Timeline**: 4-6 hours
 
 **Tasks:**
-- [ ] Create Supabase account and new project
-- [ ] Design and create database schema (tasks, categories tables)
-- [ ] Configure database connection in Flask
-- [ ] Create SQLAlchemy models for tasks and categories
+- [x] Create Supabase account and new project
+- [x] Design and create database schema (tasks, categories tables)
+- [x] Configure database connection in Flask
+- [x] Create SQLAlchemy models for tasks and categories
 - [ ] Test database connection locally
 - [ ] Create seed data for categories
 - [ ] Set up database utilities and helper functions
