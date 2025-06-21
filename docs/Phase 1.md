@@ -60,6 +60,55 @@
       Run your Flask app and visit /test-db. If you see “Database connection successful!” with no errors, SQLAlchemy is initialized correctly.
       
 1.2.4 Create SQLAlchemy models for tasks and categories  
+- 1.2.4.1 Define Python classes in a file (e.g., models.py) that inherit from db.Model. For tasks, create a class with columns like id, title, description, priority, category_id (foreign key), and created_at. For categories, create a class with columns like id, name, and created_at. Link them with a foreign key relationship.
+  ```python
+  from your_flask_app import db  # Import db from your main Flask file
+
+  class Category(db.Model):
+    __tablename__ = 'categories'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    created_at = db.Column(db.DateTime, default=db.func.now())
+
+  class Task(db.Model):
+    __tablename__ = 'tasks'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text)
+    priority = db.Column(db.Integer)
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
+    created_at = db.Column(db.DateTime, default=db.func.now())
+  ```
+- 1.2.4.2 Verify: In your Flask app, run db.create_all() to create the tables in your Supabase PostgreSQL database and use a test route to query the tables, ensuring they exist and return expected metadata.
+  ```python
+  # Import your models
+  from models import Task, Category
+  
+  # Creates tables based on Task and Category models
+  db.create_all()
+
+  #Use a test route to query the tables
+  @app.route('/test-models', methods=['GET'])
+  def test_models():
+    try:
+        categories = Category.query.all()
+        return {
+            'categories': [{
+                'id': category.id,
+                'name': category.name,
+                'created_at': category.created_at.isoformat()
+            } for category in categories]
+        }, 200
+    except Exception as e:
+        return {
+            'error': 'Model query failed',
+            'details': str(e)
+        }, 500
+  ```
+  Run the app, visit /test-models, and if it returns an empty list or category names without errors, the models are set   up correctly.
+  
 1.2.5 Test database connection locally  
 1.2.6 Create seed data for categories  
 1.2.7 Set up database utilities and helper functions  
