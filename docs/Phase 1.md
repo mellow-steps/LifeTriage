@@ -16,18 +16,34 @@
 1.2.2 Design and create database schema (tasks, categories tables)  
 1.2.3 Configure database connection in Flask  
   - 1.2.3.1 Install the required packages  
-    - 1.2.3.1.1 Run: `pip install Flask-SQLAlchemy psycopg2-binary`  
-    - 1.2.3.1.2 Verify installation:  
+    - 1.2.3.1.1 Run in the terminal: `pip install Flask-SQLAlchemy psycopg2-binary`  
+    - 1.2.3.1.2 Verify:  
       - `pip show Flask-SQLAlchemy`  
       - `pip show psycopg2-binary`  
   - 1.2.3.2 Set up the Supabase PostgreSQL connection string  
-    - 1.2.3.2.1 Get connection string from Supabase project dashboard  
-    - 1.2.3.2.2 Add to `.env` file as `DATABASE_URL`  
-    - 1.2.3.2.3 Verify setup:  
+    - 1.2.3.2.1 Get connection string from Supabase project dashboard and add it to the `.env` file as `DATABASE_URL`  
+    - 1.2.3.2.2 Verify:  
       ```python
       print(os.environ.get('DATABASE_URL'))  # Should show: postgresql://user:password@host:port/dbname
       ```  
   - 1.2.3.3 Initialize SQLAlchemy in Flask app  
+    - 1.2.3.3.1 Add these lines to your main Flask file:
+      1. Import: from flask_sqlalchemy import SQLAlchemy
+      2. After creating app = Flask(__name__), add: app.config = os.environ.get('DATABASE_URL')
+      3. Set: app.config = False (for performance)
+      4. Initialize: db = SQLAlchemy(app) Put these right after loading the .env file with load_dotenv().
+    - 1.2.3.3.2 Verify with test route: add this code after 
+      ```python
+      @app.route('/test-db')
+      def test_db():
+          try:
+              db.session.execute('SELECT 1')
+              return 'Database connection successful!'
+          except Exception as e:
+              return f'Database connection failed: {str(e)}', 500
+      ```
+      Run your Flask app and visit /test-db. If you see “Database connection successful!” with no errors, SQLAlchemy is initialized correctly.
+      
 1.2.4 Create SQLAlchemy models for tasks and categories  
 1.2.5 Test database connection locally  
 1.2.6 Create seed data for categories  
