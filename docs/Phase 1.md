@@ -27,12 +27,27 @@
       print(os.environ.get('DATABASE_URL'))  # Should show: postgresql://user:password@host:port/dbname
       ```  
   - 1.2.3.3 Initialize SQLAlchemy in Flask app  
-    - 1.2.3.3.1 Add these lines to your main Flask file:
-      1. Import: from flask_sqlalchemy import SQLAlchemy
-      2. After creating app = Flask(__name__), add: app.config = os.environ.get('DATABASE_URL')
-      3. Set: app.config = False (for performance)
-      4. Initialize: db = SQLAlchemy(app) Put these right after loading the .env file with load_dotenv().
-    - 1.2.3.3.2 Verify with test route: add this code after 
+    - 1.2.3.3.1 Import Flask and Flask-SQLAlchemy, then load the environment variables with python-dotenv. Create a Flask app instance, set the SQLALCHEMY_DATABASE_URI to the DATABASE_URL from the .env file, and initialize SQLAlchemy with the app. The file might also include basic app configurations and a placeholder for routes.
+      ```python
+      from flask import Flask
+      from flask_sqlalchemy import SQLAlchemy
+      import os
+      from dotenv import load_dotenv
+
+      # Load environment variables
+      load_dotenv()
+
+      # Initialize Flask app
+      app = Flask(__name__)
+
+      # Configure database
+      app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+      app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+      # Initialize SQLAlchemy
+      db = SQLAlchemy(app)
+      ```
+    - 1.2.3.3.2 Verify with test route: add this code after `db = SQLAlchemy(app)`:
       ```python
       @app.route('/test-db')
       def test_db():
