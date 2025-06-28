@@ -25,8 +25,10 @@ def create_app():
     with app.app_context():
         from app.routes.health import bp as health_bp
         from app.routes.tasks import bp as tasks_bp
+        from app.routes.categories import bp as categories_bp
         app.register_blueprint(health_bp)
         app.register_blueprint(tasks_bp)
+        app.register_blueprint(categories_bp)
     
     return app
 
