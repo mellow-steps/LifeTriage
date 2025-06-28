@@ -128,14 +128,14 @@ LifeTriage/
 **Timeline**: 8-10 hours
 
 **Tasks:**
-- [ ] Set up Flask blueprints and modular structure
+- [x] Set up Flask blueprints and modular structure
 - [ ] Configure Flask-CORS for frontend communication
-- [ ] Create health check endpoint
-- [ ] Implement CRUD operations for tasks
+- [x] Create health check endpoint
+- [x] Implement CRUD operations for tasks
 - [ ] Create simple keyword-based categorization service
 - [ ] Implement basic priority assignment logic
-- [ ] Add error handling and validation
-- [ ] Create API endpoint for retrieving categories
+- [x] Add error handling and validation
+- [x] Create API endpoint for retrieving categories
 - [ ] Test all endpoints with Postman or similar tool
 
 **Success Criteria:**
