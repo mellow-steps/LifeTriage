@@ -115,9 +115,9 @@ LifeTriage/
 - [x] Design and create database schema (tasks, categories tables)
 - [x] Configure database connection in Flask
 - [x] Create SQLAlchemy models for tasks and categories
-- [ ] Test database connection locally
-- [ ] Create seed data for categories
-- [ ] Set up database utilities and helper functions
+- [x] Test database connection locally
+- [x] Create seed data for categories
+- [x] Set up database utilities and helper functions
 
 **Success Criteria:**
 - Database connects successfully from Flask app
