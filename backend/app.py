@@ -1,11 +1,8 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.pool import QueuePool
-
-# Initialize extensions without app context
-db = SQLAlchemy()
+from app.extensions import db  # Import db from shared extensions
 
 def create_app():
     app = Flask(__name__)
@@ -33,7 +30,6 @@ def create_app():
     
     return app
 
-app = create_app()
-
 if __name__ == '__main__':
+    app = create_app()
     app.run(debug=True)

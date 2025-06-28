@@ -15,3 +15,8 @@ def db_check():
         return {"status": "healthy", "db_version": result.scalar()}, 200
     except Exception as e:
         return {"status": "unhealthy", "error": str(e)}, 500
+    
+#resulting routes
+#http://localhost:5000/health
+#http://localhost:5000/health/db    
+
