@@ -113,11 +113,47 @@ LifeTriage/
 **Tasks:**
 - [ ] Create Supabase account and new project
 - [ ] Design and create database schema (tasks, categories tables)
-- [ ] Configure database connection in Flask
-- [ ] Create SQLAlchemy models for tasks and categories
-- [ ] Test database connection locally
-- [ ] Create seed data for categories
-- [ ] Set up database utilities and helper functions
+<details>
+<summary>Configure database connection in Flask</summary>
+  
+1. install the required packages: Flask-SQLAlchemy, psycopg2-binary
+2. set up the Supabase PostgreSQL connection string in environment variables
+3. initialize SQLAlchemy with that connection string in your Flask app
+
+</details>
+<details>
+<summary>Create SQLAlchemy models for tasks and categories</summary>
+  
+- Step 1
+- Step 2
+- Step 3
+- 
+</details>
+<details>
+<summary>Test database connection locally</summary>
+  
+- Step 1
+- Step 2
+- Step 3
+- 
+</details>
+<details>
+<summary>Create seed data for categories</summary>
+  
+- Step 1
+- Step 2
+- Step 3
+- 
+</details>
+<details>
+<summary>Set up database utilities and helper functions</summary>
+  
+- Step 1
+- Step 2
+- Step 3
+- 
+</details>
+
 
 **Success Criteria:**
 - Database connects successfully from Flask app
